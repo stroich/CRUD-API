@@ -1,7 +1,7 @@
 import { NewUser, User, Users } from 'types/types';
 import { v4 as uuid } from 'uuid';
 
-export class UsersService {
+class UsersService {
   private readonly users: Users;
 
   constructor() {
@@ -47,3 +47,5 @@ export class UsersService {
     return user;
   }
 }
+
+export const myUserServices = new UsersService();

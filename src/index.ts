@@ -1,12 +1,14 @@
 import http from 'http';
 import dotenv from 'dotenv';
-import { UsersService } from './services/usersServices';
+import { myUserServices } from './services/usersServices';
 import { getAllUsersController } from './controllers/getAllUsersController';
+import { getUserController } from './controllers/getUserController';
+import { getNotFoundController } from './controllers/getNotfoundController';
 
 dotenv.config();
 
 const PORT = process.env.PORT;
-const myUserServices = new UsersService();
+
 const user1 = {
   username: 'Sasha',
   age: 34,
@@ -21,14 +23,14 @@ myUserServices.addUser(user1);
 myUserServices.addUser(user2);
 
 const myServer = http.createServer((req, res) => {
+  const urlParts = req.url.split('/');
+
   if (req.url === '/api/users' && req.method === 'GET') {
-    const allUser = myUserServices.getAllUsers();
-    getAllUsersController(res, allUser);
+    getAllUsersController(res);
+  } else if (urlParts.length === 4 && req.method === 'GET') {
+    getUserController(res, urlParts[3]);
   } else {
-    res.statusCode = 404;
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<h1>The users not found</h1>');
-    res.end();
+    getNotFoundController(res, 'Not Found');
   }
 });
 
