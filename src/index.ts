@@ -4,6 +4,7 @@ import { getAllUsersController } from './controllers/getAllUsersController';
 import { getUserController } from './controllers/getUserController';
 import { getNotFoundController } from './controllers/getNotfoundController';
 import { createUserController } from './controllers/createUserController';
+import { updateUserController } from './controllers/updateUserController';
 
 dotenv.config();
 
@@ -18,6 +19,8 @@ const myServer = http.createServer(async (req, res) => {
     await createUserController(res, req);
   } else if (urlParts.length === 4 && req.method === 'GET') {
     getUserController(res, urlParts[3]);
+  } else if (urlParts.length === 4 && req.method === 'PUT') {
+    updateUserController(res, urlParts[3], req);
   } else {
     getNotFoundController(res, 'Not Found');
   }

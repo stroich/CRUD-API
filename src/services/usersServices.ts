@@ -36,11 +36,8 @@ class UsersService {
     return true;
   }
 
-  updateUserById({ id, username, age, hobbies }: User) {
+  updateUserById({ username, age, hobbies }: User, id: string) {
     const user = this.getUserById(id);
-    if (!user) {
-      return false;
-    }
     user.username = username;
     user.age = age;
     user.hobbies = hobbies;
