@@ -8,3 +8,7 @@ export type User = {
 export type NewUser = Omit<User, 'id'>;
 
 export type Users = Array<User>;
+
+export interface AnyObject {
+  [key: string]: any;
+}
