@@ -14,9 +14,9 @@ export async function createUserController(res: http.ServerResponse, req: http.I
       res.writeHead(400, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify({ message: 'Missing required fields' }));
     } else {
-      myUserServices.addUser(parsedBody);
+      const newUser = myUserServices.addUser(parsedBody);
       res.writeHead(201, { 'Content-Type': 'application/json' });
-      res.end(JSON.stringify(parsedBody));
+      res.end(JSON.stringify(newUser));
     }
   } catch {
     res.writeHead(400, { 'Content-Type': 'application/json' });

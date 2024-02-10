@@ -5,6 +5,7 @@ import { getUserController } from './controllers/getUserController';
 import { getNotFoundController } from './controllers/getNotfoundController';
 import { createUserController } from './controllers/createUserController';
 import { updateUserController } from './controllers/updateUserController';
+import { deleteUserController } from './controllers/deleteUserController';
 
 dotenv.config();
 
@@ -12,15 +13,18 @@ const PORT = process.env.PORT;
 
 const myServer = http.createServer(async (req, res) => {
   const urlParts = req.url.split('/');
+  const userId = urlParts[3];
 
   if (req.url === '/api/users' && req.method === 'GET') {
     getAllUsersController(res);
   } else if (req.url === '/api/users' && req.method === 'POST') {
     await createUserController(res, req);
-  } else if (urlParts.length === 4 && req.method === 'GET') {
-    getUserController(res, urlParts[3]);
-  } else if (urlParts.length === 4 && req.method === 'PUT') {
-    updateUserController(res, urlParts[3], req);
+  } else if (req.url === `/api/users/${userId}` && req.method === 'GET') {
+    getUserController(res, userId);
+  } else if (req.url === `/api/users/${userId}` && req.method === 'PUT') {
+    updateUserController(res, userId, req);
+  } else if (req.method === 'DELETE' && req.url === `/api/users/${userId}`) {
+    deleteUserController(res, req, userId);
   } else {
     getNotFoundController(res, 'Not Found');
   }

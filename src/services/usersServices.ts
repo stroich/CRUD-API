@@ -29,11 +29,7 @@ class UsersService {
 
   deleteUserById(id: string) {
     const userIndex = this.users.findIndex((user) => user.id === id);
-    if (userIndex === -1) {
-      return false;
-    }
     this.users.splice(userIndex, 1);
-    return true;
   }
 
   updateUserById({ username, age, hobbies }: User, id: string) {
