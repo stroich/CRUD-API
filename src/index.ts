@@ -11,7 +11,7 @@ dotenv.config();
 
 const PORT = process.env.PORT;
 
-const myServer = http.createServer(async (req, res) => {
+export const myServer = http.createServer(async (req, res) => {
   try {
     const urlParts = req.url.split('/');
     const userId = urlParts[3];

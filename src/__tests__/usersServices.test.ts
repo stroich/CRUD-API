@@ -1,13 +1,7 @@
 import { UsersService } from '../services/usersServices';
+import { mockUser } from './mocks/user';
 
 const id = '5daa4161-5c3c-40c0-9646-ca7cb3d4adfe';
-
-const mockUser = {
-  username: 'Masha',
-  age: 30,
-  hobbies: [],
-};
-
 const newUser = { ...mockUser, id };
 
 jest.mock('uuid', () => {
@@ -21,6 +15,10 @@ describe('myUserServices tests', () => {
 
   beforeEach(() => {
     myUserServices = new UsersService();
+  });
+
+  afterAll(() => {
+    jest.useRealTimers();
   });
 
   test('getAllUsers: should return an empty array', () => {
