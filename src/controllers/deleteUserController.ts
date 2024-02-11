@@ -12,7 +12,7 @@ export async function deleteUserController(
     const allUsers = myUserServices.getAllUsers();
     const isUser = allUsers.find((user) => user.id === userId);
 
-    if (uuidValidate(userId, { version: '4' })) {
+    if (uuidValidate(userId)) {
       if (isUser) {
         myUserServices.deleteUserById(isUser.id);
         res.writeHead(204, { 'Content-Type': 'application/json' });

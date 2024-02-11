@@ -8,7 +8,7 @@ export function getUserController(res: http.ServerResponse, userId: string) {
     const allUsers = myUserServices.getAllUsers();
     const isUser = allUsers.find((user) => user.id === userId);
 
-    if (uuidValidate(userId, { version: '4' })) {
+    if (uuidValidate(userId)) {
       if (isUser) {
         const user = myUserServices.getUserById(userId);
         res.writeHead(200, { 'Content-Type': 'application/json' });

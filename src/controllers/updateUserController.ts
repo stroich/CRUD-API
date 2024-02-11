@@ -16,7 +16,7 @@ export async function updateUserController(
     const isUser = allUsers.find((user) => user.id === userId);
     const parsedBody = await getPostData(req);
 
-    if (uuidValidate(userId, { version: '4' })) {
+    if (uuidValidate(userId)) {
       const isUserValidate = validateUser(parsedBody);
       if (!isUserValidate) {
         res.writeHead(400, { 'Content-Type': 'application/json' });
