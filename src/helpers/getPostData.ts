@@ -1,3 +1,4 @@
+import { InvalidJSONError } from '../error/customErrors';
 import http from 'http';
 
 export function getPostData(req: http.IncomingMessage): Promise<any> {
@@ -13,7 +14,7 @@ export function getPostData(req: http.IncomingMessage): Promise<any> {
         try {
           resolve(JSON.parse(body));
         } catch (error) {
-          request(error);
+          request(new InvalidJSONError('Неверный формат JSON'));
         }
       });
     } catch (error) {

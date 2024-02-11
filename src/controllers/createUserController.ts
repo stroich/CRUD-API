@@ -1,6 +1,7 @@
 import http from 'http';
 import { myUserServices } from '../services/usersServices';
 import { getPostData } from '../helpers/getPostData';
+import { sendErrorResponse } from '../helpers/sendErrorResponse';
 
 export async function createUserController(res: http.ServerResponse, req: http.IncomingMessage) {
   try {
@@ -18,8 +19,7 @@ export async function createUserController(res: http.ServerResponse, req: http.I
       res.writeHead(201, { 'Content-Type': 'application/json' });
       res.end(JSON.stringify(newUser));
     }
-  } catch {
-    res.writeHead(400, { 'Content-Type': 'application/json' });
-    res.end(JSON.stringify({ message: 'Invalid JSON format' }));
+  } catch (error) {
+    sendErrorResponse(res, error);
   }
 }
