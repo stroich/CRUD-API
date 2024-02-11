@@ -1,7 +1,7 @@
 import { NewUser, User, Users } from 'types/types';
 import { v4 as uuid } from 'uuid';
 
-class UsersService {
+export class UsersService {
   private readonly users: Users;
 
   constructor() {
