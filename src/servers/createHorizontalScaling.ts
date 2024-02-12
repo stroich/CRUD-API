@@ -8,7 +8,7 @@ export function createHorizontalScaling(PORT: string) {
   const workers = [];
 
   if (cluster.isPrimary) {
-    for (let i = 0; i < 3; i++) {
+    for (let i = 0; i < NUM_CPUS; i++) {
       const workersPort = +PORT + i + 1;
       const currentPath = `http://localhost:${workersPort}`;
       const childWorker = cluster.fork({ PORT: workersPort });
