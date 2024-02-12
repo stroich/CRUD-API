@@ -6,6 +6,7 @@
   "scripts": {
     "start:prod": "npm run build && node ./build/bundle.js",
     "start:dev": "nodemon",
+    "start:multi": "nodemon -- --isMulti=true",
     "build": "webpack --config ./webpack.config.ts --env mode=production",
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\" --fix",

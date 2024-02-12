@@ -1,9 +1,10 @@
-import { myServer } from 'index';
 import supertest from 'supertest';
 import { mockUser, mockWrongUser } from './mocks/user';
 import { myUserServices } from 'services/usersServices';
 import * as uuid from 'uuid';
+import { createMyServer } from 'servers/createMyServer';
 
+const myServer = createMyServer('4000', false);
 const request = supertest.agent(myServer);
 const id = '5daa4161-5c3c-40c0-9646-ca7cb3d4adfe';
 const newUser = { ...mockUser, id };
