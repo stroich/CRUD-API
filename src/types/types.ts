@@ -1,0 +1,14 @@
+export type User = {
+  id: string;
+  username: string;
+  age: number;
+  hobbies: string[];
+};
+
+export type NewUser = Omit<User, 'id'>;
+
+export type Users = Array<User>;
+
+export interface AnyObject {
+  [key: string]: any;
+}
